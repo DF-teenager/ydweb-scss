@@ -9,15 +9,129 @@
 
 ![image](./images/main_color.png)
 
+```SCSS
+$mainColor: #FF8819;  //主色
+$graydarker: #333;
+$graydark: #666;
+$gray: #DDD;
+$grayLight: #F5F5F5;
+$white: #FFF;
+```
+
 > 辅助色
 
 ![image](./images/sub_color.png)
 
-### variable
+### variable(待完善)
+#### global
+
+> 定义了包含字体、背景色、间隔距等常用的全局变量 
+
+```SCSS
+<!-- font family -->
+$YdGlobalFontCN: "Lantinghei SC", "Microsoft YaHei", "微软雅黑", "宋体";
+$YdGlobalFontEN: Verdana, Arial, Helvetica, "san-serif";
+$YdGlobalFontDefault: PingFang SC,Lantinghei SC,Helvetica Neue,Helvetica,Arial,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,STHeitiSC-Light,simsun,\\5B8B\4F53,WenQuanYi Zen Hei,WenQuanYi Micro Hei,'sans-serif';
+$YdGlobalFontSize15: 15px;
+$YdGlobalFontSize14: 14px;  // 默认字体14px
+$YdGlobalFontSize13: 13px;
+$YdGlobalFontSize12: 12px;  // 二级字体12px
+
+<!-- page -->
+$pageDefaultBackgroundColor:#F6F6F6;
+$headerDefaultBackgroundColor:#FFFFFF;
+
+<!-- gap间隔 -->
+$gap12: 12px;
+$gap15: 15px;
+$gap22: 22px;
+
+<!-- radius -->
+$baseRadius:2px;
+
+<!-- size -->
+$pageDefaultWidth:1000px;
+```
+#### button
+
+> 定义button常用的变量
+
+```SCSS
+<!-- button padding -->
+$YdBtnPadH: 7px;
+$YdBtnPadV: 7px;
+
+<!-- button bg -->
+$YdBtnDisableBg: $gray;
+$YdBtnDefaultBg: $white;
+$YdBtnprimaryBg: $mainColor;
+$YdBtnprimaryActiveBg: rgba($mainColor, .8);
+
+<!-- button height -->
+$YdBtnHeightDefault: 34px;
+$YdBtnLineHeightDefault: 34px;
+$YdBtnHeightMax: 38px;
+$YdBtnLineHeightMax: 38px;
+
+<!-- button color  -->
+$YdBtnFontColorDisable: $graydark;
+$YdBtnFontColorDefault: $mainColor;
+$YdBtnFontColorPrimary: $white;
+$YdBtnFontColorPrimaryActive: rgba(255, 255, 255, .8);
+
+<!-- button size -->
+$YdBtnFontSize: $YdGlobalFontSize14;
+$YdBtnBorderRadius: $baseRadius;
+```
 
 ### mixin
 
 !> 注：由于mixin函数代码比较多，所以文档只包含了mixin的调用方法，如需查看，请点击[mixin](https://github.com/DF-teenager/ydweb-scss)
+
+#### grid
+
+> 栅格布局，默认宽度为1000px的布局，每个栅格为65px，共12个，计算公式：(65+20)*12-20 = 1000，支持固定宽度和百分比宽度。
+
+```SCSS
+// ===============================================
+// 里面定义了width，左右margin及左浮动。
+// 可传入两个参数$i，$subtract（可选，默认为0）。
+// ===============================================
+
+@mixin column($i: $gridColumns, $subtract:0){
+  // 解决当$i 小于$gridColumns的时候需要float
+  @if $i < $gridColumns {
+    @extend %float;
+  }
+  @extend %margin-gutter;
+
+  $getWidth: getWidth($i, true, $subtract); // Use the width calculation function to get the width 
+  width: $getWidth;
+
+  @if $gridPercentSwitch and $lte7{
+    *width:$getWidth - $gridCorrection;
+  } 
+}
+
+// ================================================================================
+// wrapper里面定义了宽度，清除子元素浮动，及是否水平居中。
+// 可传入三个参数：$i，$center（可选，默认为true），$subtract（可选，默认为0）。
+// ================================================================================
+
+@mixin wrapper($i: $gridColumns, $center:true, $subtract:0){
+  @extend %clearfix;
+  
+  $getWrapperWidth: getWidth($i, false);
+  $wrapperWidth: $getWrapperWidth - $subtract;
+  width:$wrapperWidth;
+
+  @if $center == true {
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+```
+!> 注：关于栅格布局的使用在后面的widget中会有详细的说明。
 
 #### badge(徽章)
 
@@ -127,7 +241,71 @@
 }
 ```
 
-# 基础组件
+# 基础组件(widget)
+
+## Basic
+### Layout 布局
+
+> 通过基础的 12 分栏，迅速简便地创建布局。默认宽度为1000px，每个栅格为65px，共12个，计算公式：(65+20)*12-20 = 1000。
+
+```html
+<div class="layout-block prj-1">
+    <div class="element"></div>
+    <div class="element"></div>
+    <div class="element"></div>
+    <div class="element"></div>
+    <div class="element"></div>
+</div>
+<div class="layout-block prj-2">
+    <div class="element"></div>
+    <div class="element"></div>
+    <div class="element"></div>
+    <div class="element"></div>
+</div>
+<div class="layout-block prj-3">
+    <div class="element"></div>
+    <div class="element"></div>
+    <div class="element"></div>
+</div>
+<div class="layout-block prj-4">
+    <div class="element"></div>
+    <div class="element"></div>
+</div>
+```
+
+```SCSS
+.layout-block{
+	// @include comm1000(68px, $white)
+	height: 68px;
+	@include wrapper(9,true,9);
+	.element{
+		height: 28px;
+		border-radius: $baseRadius + 2px;
+		background: $gray;
+	}
+	&.prj-1 .element{
+		@include column(2, 20px);
+		<!-- 设置栅格间隔大小，如果不需要间隔，可设置margin:0; -->
+		// margin: 0;
+	}
+	&.prj-2 .element{
+		@include column(2, -17.5px);
+	}
+	&.prj-3 .element{
+		@include column(3, 5px);
+	}
+	&.prj-4 .element{
+		@include column(4, -35px);
+	}
+}
+```
+##### ●RESULT
+
+![image](./images/grid.png)
+
+!> column和wrapper的区别在于：column一般用于子元素，有浮动和margin左右，所以计算宽度时设置$onlyInnerWidth为true，即减掉左右的margin，而wrapper一般用于父元素，得用来闭合子元素的浮动，然后可能会需要居中对齐，所以计算宽度时设置$onlyInnerWidth为false。当然宽度不可能每次都是恰好的，所有有了$subtract来微调，你也可以根据你的项目直接使用getWidth这个函数，而不必使用这些mixin什么的，关键在于灵活运用。
+
+### button 按钮
 
 ## From
 ### Radio 单选框
