@@ -299,13 +299,31 @@ $YdBtnBorderRadius: $baseRadius;
 	}
 }
 ```
-##### ●RESULT
+#### ●RESULT
 
 ![image](./images/grid.png)
 
-!> column和wrapper的区别在于：column一般用于子元素，有浮动和margin左右，所以计算宽度时设置$onlyInnerWidth为true，即减掉左右的margin，而wrapper一般用于父元素，得用来闭合子元素的浮动，然后可能会需要居中对齐，所以计算宽度时设置$onlyInnerWidth为false。当然宽度不可能每次都是恰好的，所有有了$subtract来微调，你也可以根据你的项目直接使用getWidth这个函数，而不必使用这些mixin什么的，关键在于灵活运用。
+!> column和wrapper的区别在于：column一般用于子元素，有浮动和margin左右，所以计算宽度时设置$onlyInnerWidth为true，即减掉左右的margin，而wrapper一般用于父元素，得用来闭合子元素的浮动，然后可能会需要居中对齐，所以计算宽度时设置$onlyInnerWidth为false。当然宽度不可能每次都是恰好的，所有有了$subtract来微调，你也可以根据你的项目直接使用getWidth这个函数，而不必使用这些mixin什么的，关键在于灵活运用。<br/><br/>可通过margin单独设置元素element之间的间隔。
 
 ### button 按钮
+
+```html
+<div class="button-block">
+    <a class="btn primary" href="javascript:void(0);">我是按钮primary</a>
+    <a class="btn unprimary" href="javascript:void(0);">我是按钮unprimary</a>
+    <a class="btn reder" href="javascript:void(0);">我是按钮reder</a>
+    <a class="btn graybtn" href="javascript:void(0);">我是按钮graybtn</a>
+    <a class="btn default primary" href="javascript:void(0);">我是按钮b_primary</a>
+    <a class="btn default unprimary" href="javascript:void(0);">我是按钮b_unprimary</a>
+    <a class="btn default reder" href="javascript:void(0);">我是按钮b_reder</a>
+    <a class="btn disable" href="javascript:void(0);">我不能点disable</a>
+</div>
+```
+#### ●RESULT
+
+![image](./images/button.png)
+
+!> 注：如果button不能满足需求，可通过自定义样式覆盖即可。
 
 ## From
 ### Radio 单选框
