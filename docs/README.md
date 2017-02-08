@@ -425,3 +425,27 @@ $YdBtnBorderRadius: $baseRadius;
 
 ### Input 输入框（待更新）
 
+## Data
+### Progress
+
+> 用于展示操作进度，告知用户当前状态和预期。
+
+```html
+<div class="progress-block">
+    <div class="progress">
+        <div class="progress-ele">
+            <div class="item ele-primary"></div>
+            <div class="item ele-disable"></div>
+            <div class="item ele-default"></div>
+        </div>
+        <div class="progress-data clearfix">
+            <span class="item ele-percent">66%</span>
+            <span class="item ele-desc">购买次日计息，次日起可退</span>
+            <span class="item ele-money">132万/200万</span>
+        </div>
+    </div>
+</div>
+```
+#### ●RESULT
+
+![image](./images/progress.png)
