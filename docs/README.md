@@ -1,6 +1,6 @@
 # YDWeb SCSS样式与组件说明文档
 
-# 样式说明
+
 
 ## Basic
 ### Color
@@ -422,4 +422,6 @@ $YdBtnBorderRadius: $baseRadius;
 ![image](./images/checkbox.png)
 
 !> 注：多选框如需行显示，同单选框需在class为checkbox-block的元素添加fl属性即可；如需有文字说明，需修改class为checkbox-text-block。
+
+### Input 输入框（待更新）
 
