@@ -173,7 +173,7 @@ $YdBtnBorderRadius: $baseRadius;
 	@include badge(20px, 20px, left, -1px, 67px, 4px)
 } 
 ```
-##### ●RESULT
+##### • RESULT
 
 ![image](./images/badge.png)
 
@@ -221,7 +221,7 @@ $YdBtnBorderRadius: $baseRadius;
 	@include arrow(5px, 1px, 'left', $graydark, $white) 
 }
 ```
-##### ●RESULT
+##### • RESULT
 
 ![image](./images/arrow.png)
 
@@ -297,7 +297,7 @@ $YdBtnBorderRadius: $baseRadius;
 	}
 }
 ```
-#### ●RESULT
+#### • RESULT
 
 ![image](./images/grid.png)
 
@@ -317,7 +317,7 @@ $YdBtnBorderRadius: $baseRadius;
     <a class="btn disable" href="javascript:void(0);">我不能点disable</a>
 </div>
 ```
-#### ●RESULT
+#### • RESULT
 
 ![image](./images/button.png)
 
@@ -355,7 +355,7 @@ $YdBtnBorderRadius: $baseRadius;
 </div>
 ```
 
-#### ●RESULT
+#### • RESULT
 
 ![image](./images/radio.png)
 
@@ -415,7 +415,7 @@ $YdBtnBorderRadius: $baseRadius;
 </div>
 ```
 
-#### ●RESULT
+#### • RESULT
 
 ![image](./images/checkbox.png)
 
@@ -444,6 +444,6 @@ $YdBtnBorderRadius: $baseRadius;
     </div>
 </div>
 ```
-#### ●RESULT
+#### • RESULT
 
 ![image](./images/progress.png)
