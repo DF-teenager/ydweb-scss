@@ -11,4 +11,22 @@
   <div id="app"></div>
 </body>
 <script src="//unpkg.com/docsify/lib/docsify.js" data-router data-repo=""></script>
+<script type="text/javascript">
+	function setTitle(title) {
+		document.title = title;
+		if (/ip(hone|od|ad)/i.test(navigator.userAgent)) {
+		    var i = document.createElement('iframe');
+		    i.src = '/favicon.ico';
+		    i.style.display = 'none';
+		    i.onload = function() {
+		      setTimeout(function(){
+		        i.remove();
+		      }, 9)
+		    }
+		    document.body.appendChild(i);
+		}
+	}
+
+	setTitle("YDWeb SCSS样式与组件说明文档");
+</script>
 </html>
