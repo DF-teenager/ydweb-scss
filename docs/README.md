@@ -424,7 +424,7 @@ $YdBtnBorderRadius: $baseRadius;
 ### Input 输入框（待更新）
 
 ## Data
-### Progress
+### Progress 进度条
 
 > 用于展示操作进度，告知用户当前状态和预期。
 
@@ -447,3 +447,29 @@ $YdBtnBorderRadius: $baseRadius;
 #### • RESULT
 
 ![image](./images/progress.png)
+
+### Pagination 分页（待更新）
+
+## Other
+### Loading 加载
+
+> 加载数据时显示动效。
+
+```html
+<div class="loading-block">
+    <img class="loading_small" src="https://caiyunupload.b0.upaiyun.com/ydimg/theme/2016/12/cart/loading0.gif" alt="">
+    <svg viewBox="25 25 50 50" class="circular">
+        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+    </svg>
+    <p class="yd-loading-text">Loading...</p>
+</div>
+```
+#### • RESULT
+
+![image](./images/loading.png)
+
+!> 注：第一个为图片，第二个使用SVG。可通过自定义样式改变loading的大小、颜色以及是否需要文字。
+
+### Dialog 对话框（待更新）
+### Tooltip 文字提示（待更新）
+### Carousel 走马灯（待更新）
